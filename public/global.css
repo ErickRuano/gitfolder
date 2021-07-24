@@ -1,0 +1,41 @@
+/* Global customization */
+
+html{
+	font-size:12px!important;
+}
+
+/* Chota customization */
+
+:root {
+	--color-primary: #14854F;
+	--color-lightGrey: #d2d6dd;
+	--color-grey: #747681;
+	--color-darkGrey: #3f4144;
+	--color-error: #d43939;
+	--color-success: #28bd14;
+	--grid-maxWidth: 120rem;
+	--grid-gutter: 2rem;
+	--font-size: 1rem;
+	--font-family: "Helvetica Neue", sans-serif;
+	--bg-color: #a684ab!important;
+}
+
+
+/* Clerk Customization */
+
+.cl-component{
+	font-size: var(--font-size)!important;
+}
+
+.cl-sign-in label{
+	font-size: var(--font-size)!important;
+}
+
+.cl-auth-form-switch span, .cl-auth-form-switch a{
+	font-size: var(--font-size)!important;
+}
+
+.cl-user-button{
+	width:4rem!important;
+	height:4rem!important;
+}
