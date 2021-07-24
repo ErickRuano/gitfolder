@@ -1,14 +1,17 @@
 <script>
+	import { clerk } from './../components/clerk/clerk'
 	import Button  from './../components/Button.svelte'
 
-	export let login
+	export let cta = ()=>{
+		$clerk.openSignUp()
+	}
 </script>
 
 <div class="content">
 	<img src="assets/undraw_folder_39kl.svg"/>
 	<h1>Welcome to GitFolder</h1>
 	<p>Import your repositories, organize in folders, share</p>
-	<Button on:click={()=>{ login = true }}>Get Started</Button>
+	<Button on:click={cta}>Get Started</Button>
 </div>
 
 <style>
@@ -23,7 +26,7 @@
 	}
 
 	img{
-		max-width:24em;
+		max-width:20em;
 	}
 
 	h1 {

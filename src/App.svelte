@@ -8,6 +8,9 @@
 	import UserButton from './components/clerk/ClerkUserButton.svelte'
 	import SignInButton from './components/clerk/SignInButton.svelte'
 
+	import SignedIn from './components/clerk/SignedIn.svelte'
+	import SignedOut from './components/clerk/SignedOut.svelte'
+
 	import Home from './routes/Home.svelte'
 	import Folder from './routes/Folder.svelte'
 	import NewFolder from './routes/NewFolder.svelte'
@@ -30,29 +33,30 @@
 <ClerkLoader api="clerk.ip0fw.qmsqm.lcl.dev"></ClerkLoader>
 
 <header>
-	<h1>GITFOLDER</h1>
+	<h1 style="font-size:18px;">GITFOLDER</h1>
 	<nav>
-		{#if $clerk.user === undefined}
-			Loading...
-		{:else}
-			{#if $clerk.user}
-				<UserButton/>
-			{:else}
-				<SignInButton/>
-			{/if}
-		{/if}
+	
+		<SignedIn>
+			<span ><UserButton></UserButton></span>
+		</SignedIn>
+		<SignedOut>
+			<span slot="signedOut">
+				<SignInButton></SignInButton>
+			</span>
+		</SignedOut>
 	</nav>
 </header>
 <main>
-	{#if $clerk.user === undefined}
-		<div class="loader">Loading...</div>
-	{:else}
-		{#if $clerk.user}
-			<Router {routes}></Router>
-		{:else}
+
+	<SignedIn>
+		<div class="loader" slot="loading">Loading...</div>
+		<span ><Router {routes}></Router></span>
+	</SignedIn>
+	<SignedOut>
+		<span slot="signedOut">
 			<Landing bind:login={login}></Landing>
-		{/if}
-	{/if}
+		</span>
+	</SignedOut>
 </main>
 
 <style>
@@ -66,6 +70,7 @@
 		box-sizing: border-box;
 		display:flex;
 		flex-direction: column;
+		box-shadow: 0px -2px 24px 0px rgba(50, 50, 50, 0.25);
 	}
 
 	header{
@@ -85,5 +90,11 @@
 		position: absolute;
 		top: 50%;
 		transform: translate(0, -50%);
+		text-align:center;
+	}
+
+	span[slot]{
+		height:100%;
+		width:100%;
 	}
 </style>

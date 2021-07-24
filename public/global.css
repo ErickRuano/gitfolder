@@ -2,6 +2,18 @@
 
 html{
 	font-size:12px!important;
+	overflow:hidden;
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
 }
 
 /* Chota customization */
@@ -15,7 +27,8 @@ html{
 	--color-success: #28bd14;
 	--grid-maxWidth: 120rem;
 	--grid-gutter: 2rem;
-	--font-size: 1rem;
+	--font-size: 1.1rem;
+	--font-size-s: 1rem;
 	--font-family: "Helvetica Neue", sans-serif;
 	--bg-color: #a684ab!important;
 }
@@ -23,7 +36,15 @@ html{
 
 /* Clerk Customization */
 
-.cl-component{
+.cl-user-button-identifier{
+	font-size: var(--font-size-s)!important;
+}
+
+.cl-account-switcher button span{
+	font-size: var(--font-size-s)!important;
+}
+
+.cl-component button{
 	font-size: var(--font-size)!important;
 }
 
