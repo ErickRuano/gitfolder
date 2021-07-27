@@ -1,5 +1,7 @@
 <script>
     import { Button } from 'svelte-chota'
+
+    export let primary = false
 </script>
 
-<Button on:click><slot></slot></Button>
+<Button {primary} on:click><slot></slot></Button>

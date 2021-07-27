@@ -3,18 +3,22 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "node scripts/bundleAPI",
+    "postinstall": "node scripts/bundleAPI && npx prisma generate",
     "build": "rollup -c",
     "dev": "node scripts/bundleAPI && rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --no-clear",
+    "vercel-dev" : "node scripts/bundleAPI.js && vercel dev --listen 5000"
   },
   "devDependencies": {
+    "@erickruano/clerk-svelte": "0.0.5",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-replace": "^3.0.0",
     "axios": "^0.21.1",
     "chota": "^0.8.0",
     "dotenv": "^10.0.0",
     "prisma": "^2.27.0",
+    "qs": "^6.10.1",
     "rollup": "^2.53.3",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",

@@ -5,6 +5,10 @@ html{
 	overflow:hidden;
 }
 
+body{
+	background-color: #a684ab!important;
+}
+
 ::-webkit-scrollbar
 {
 	width: 6px;
@@ -19,7 +23,7 @@ html{
 /* Chota customization */
 
 :root {
-	--color-primary: #14854F;
+	--color-primary: #4B2E50!important;
 	--color-lightGrey: #d2d6dd;
 	--color-grey: #747681;
 	--color-darkGrey: #3f4144;
@@ -30,12 +34,35 @@ html{
 	--font-size: 1.1rem;
 	--font-size-s: 1rem;
 	--font-family: "Helvetica Neue", sans-serif;
-	--bg-color: #a684ab!important;
+	--bg-color: #fff!important;
 }
 
 
 /* Clerk Customization */
 
+:root{
+	--clerk-primary: #335bf1;
+    --clerk-primary-rgb: 51,91,241;
+    --clerk-primary-d1: hsl(227,87%,52%);
+    --clerk-primary-d2: hsl(227,87%,49%);
+    --clerk-primary-l1: hsl(227,87%,94%);
+    --clerk-primary-l2: hsl(227,87%,96%);
+    --clerk-primary-a1: hsla(227,87%,57%,0.5);
+    --clerk-primary-a2: hsla(227,87%,57%,0.25);
+    --clerk-font-family: "Source Sans Pro", sans-serif;
+    --clerk-font-color: #151515;
+    --clerk-font-color-rgb: 21,21,21;
+    --clerk-font-color-l1: hsl(0,0%,50%);
+    --clerk-button-font-family: "Source Sans Pro", sans-serif;
+    --clerk-button-font-color: #ffffff;
+    --clerk-button-font-weight: 600;
+    --clerk-padding-mod: 1;
+    --clerk-border-radius: 0.5em;
+    --clerk-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --clerk-background-color: #ffffff;
+    --clerk-accounts-background-color: #ffffff;
+}
+	
 .cl-user-button-identifier{
 	font-size: var(--font-size-s)!important;
 }
@@ -60,3 +87,4 @@ html{
 	width:4rem!important;
 	height:4rem!important;
 }
+

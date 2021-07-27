@@ -1,9 +1,9 @@
 <script>
-	import { clerk } from './../components/clerk/clerk'
+	import { Clerk } from '@erickruano/clerk-svelte'
 	import Button  from './../components/Button.svelte'
 
 	export let cta = ()=>{
-		$clerk.openSignUp()
+		$Clerk.openSignUp()
 	}
 </script>
 

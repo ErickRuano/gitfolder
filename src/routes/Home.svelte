@@ -2,18 +2,23 @@
 	import { push } from 'svelte-spa-router'
 
 	import Container from '../components/Container.svelte'
-	import Title from '../components/Title.svelte'
+	import TitleWithButtons from '../components/TitleWithButtons.svelte'
+	import Button from '../components/Button.svelte'
 	import Placeholder from '../components/Placeholder.svelte'
+
+	const addFolder = ()=>{ push('/folder/new') }
 </script>
 
 
 <Container>
-	
-	<Title>Organize your repositories into folders</Title>
+
+	<TitleWithButtons title="Organize your repositories into folders">	
+		<Button primary on:click={addFolder}>Add folder</Button>
+	</TitleWithButtons>
 	
 	<Container overflowY="auto">
 		{#if true}
-			<Placeholder text="You haven't added any folders yet" action={()=>{ push('/folder/new') }} ></Placeholder>
+			<Placeholder text="You haven't added any folders yet"  ></Placeholder>
 		{:else}
 		
 		{/if}

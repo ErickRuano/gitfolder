@@ -1,17 +1,18 @@
 <script>
     import Button from './Button.svelte'
 
-    export let action = ()=>{
-        alert('Clicked')
-    }
+    export let action = undefined
+    export let actionText = undefined
     export let text = "You haven't added any data yet"
-    export let src = "assets/undraw_No_data_re_kwbl.svg"
+    export let src = "assets/organizing.svg"
 </script>
 
 <div class="placeholder"> 
     <img {src} />
     <p >{text}</p>
-    <Button on:click={action}>Add folder</Button>
+    {#if action && actionText}
+    <Button primary on:click={action}>{actionText}</Button>
+    {/if}
 </div>
 
 <style>

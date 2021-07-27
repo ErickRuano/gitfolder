@@ -1,36 +1,39 @@
 <script>
+	import { setContext } from 'svelte'
 	import Router from 'svelte-spa-router'
-
+	
 	import 'chota'
 
-	import { clerk } from './components/clerk/clerk'
-	import ClerkLoader from './components/clerk/ClerkLoader.svelte'
-	import UserButton from './components/clerk/ClerkUserButton.svelte'
-	import SignInButton from './components/clerk/SignInButton.svelte'
-
-	import SignedIn from './components/clerk/SignedIn.svelte'
-	import SignedOut from './components/clerk/SignedOut.svelte'
+	import { ClerkProvider, UserButton, SignedIn, SignedOut } from '@erickruano/clerk-svelte'
+	import SignInButton from './components/SignInButton.svelte'
 
 	import Home from './routes/Home.svelte'
 	import Folder from './routes/Folder.svelte'
 	import NewFolder from './routes/NewFolder.svelte'
+	import NewRepo from './routes/NewRepo.svelte'
 	import Repo from './routes/Repo.svelte'
 	import Landing from './routes/Landing.svelte';
+	import NotFound from './routes/NotFound.svelte';
+
+	export let env
 
 	let login = false;
+
+	setContext('env', env || {})
+
 
 	const routes = {
 		"/" : Home,
 		"/folder/new" : NewFolder,
-		"/folder/:folder?" : Folder,
+		"/folder/:folder" : Folder,
+		"/folder/:folder/repo/new" : NewRepo,
 		"/folder/:folder/repo/:repo" : Repo,
-		'*' : Landing
+		'*' : NotFound
  	}
 
 
 </script>
-
-<ClerkLoader api="clerk.ip0fw.qmsqm.lcl.dev"></ClerkLoader>
+<ClerkProvider frontendApi="clerk.ip0fw.qmsqm.lcl.dev"></ClerkProvider>
 
 <header>
 	<h1 style="font-size:18px;">GITFOLDER</h1>
@@ -50,7 +53,7 @@
 
 	<SignedIn>
 		<div class="loader" slot="loading">Loading...</div>
-		<span ><Router {routes}></Router></span>
+		<div class="slot"><Router {routes}></Router></div>
 	</SignedIn>
 	<SignedOut>
 		<span slot="signedOut">
@@ -93,7 +96,7 @@
 		text-align:center;
 	}
 
-	span[slot]{
+	div.slot, span[slot]{
 		height:100%;
 		width:100%;
 	}

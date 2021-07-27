@@ -1,30 +1,27 @@
 <script>
-	
+	import { push, location } from 'svelte-spa-router'
+
+	import Container from '../components/Container.svelte'
+	import TitleWithButtons from '../components/TitleWithButtons.svelte'
+	import Button from '../components/Button.svelte'
+	import Placeholder from '../components/Placeholder.svelte'
 </script>
 
-<main>
-	<h1>Hello!</h1>
-	<p>This is Folder</p>
-</main>
 
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+<Container>
+	
+	<TitleWithButtons title="Folder name">	
+		<Button  on:click={()=>{ push('/folder/new') }}>Add Folder</Button>
+		<Button primary on:click={()=>{ push(`${$location}/repo/new`) }}>Add Repository</Button>
+	</TitleWithButtons>
+	
+	
+	<Container overflowY="auto">
+		{#if true}
+			<Placeholder text="You haven't added any contents on this folder yet" ></Placeholder>
+		{:else}
+		
+		{/if}
+	</Container>
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+</Container>

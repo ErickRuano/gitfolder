@@ -4,7 +4,7 @@ async function build() {
 
   const inputOptions = {
     input : 'src/api/main.js',
-    external : ['axios', 'dotenv']
+    external : ['axios', 'dotenv', '@prisma/client']
   };
 
   const outputOptions = {
