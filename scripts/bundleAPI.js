@@ -4,7 +4,7 @@ async function build() {
 
   const inputOptions = {
     input : 'src/api/main.js',
-    external : ['axios', 'dotenv', '@prisma/client']
+    external : ['axios', 'dotenv', '@prisma/client', '@clerk/clerk-sdk-node', 'cookies']
   };
 
   const outputOptions = {
