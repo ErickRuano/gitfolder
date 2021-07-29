@@ -1,12 +1,11 @@
-<h1><slot></slot></h1>
+<p><slot></slot></p>
 
 <style>
 
 	
-	h1 {
+	p {
 		color: #4a4a4a;
-		font-size: 3rem;
-		text-transform:uppercase;
+		font-size: 2rem;
 		font-weight: bold;
 		margin:0px;
 	}

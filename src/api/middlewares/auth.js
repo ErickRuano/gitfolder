@@ -1,5 +1,5 @@
-import users from './clerkUsers'
-import { setClerkApiKey,  sessions, clients } from '@clerk/clerk-sdk-node';
+// import users from './clerkUsers'
+import { setClerkApiKey,  sessions, clients, users} from '@clerk/clerk-sdk-node';
 import Cookies from 'cookies'
 
 import { PrismaClient } from '@prisma/client'
@@ -59,7 +59,6 @@ const authMiddleware = async(req, res)=>{
     
 	// Check if user in db, else store
 	const dbUser = await findOrCreateUser(user)
-	console.log('dbuser', dbUser)
     
 	// Verify if user should access resource
     
@@ -67,7 +66,7 @@ const authMiddleware = async(req, res)=>{
 	// Remove _clerk_session_id from req.query to avoid conflict with prisma
 	delete req.query._clerk_session_id
 
-    return user
+    return { ...user, ...dbUser }
 }
 
 export const auth = authMiddleware

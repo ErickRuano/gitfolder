@@ -88,3 +88,6 @@ body{
 	height:4rem!important;
 }
 
+.cl-user-button-popup{
+	z-index:100!important;
+}

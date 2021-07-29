@@ -10,8 +10,9 @@
     "vercel-dev": "node scripts/bundleAPI.js && vercel dev --listen 5000"
   },
   "devDependencies": {
-    "@clerk/clerk-sdk-node": "^0.5.0",
+    "@clerk/clerk-sdk-node": "^0.5.1",
     "@erickruano/clerk-svelte": "0.0.5",
+    "@mdi/js": "^5.9.55",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-replace": "^3.0.0",
@@ -19,6 +20,7 @@
     "chota": "^0.8.0",
     "cookies": "^0.8.0",
     "dotenv": "^10.0.0",
+    "mdi-svelte": "^1.1.2",
     "prisma": "^2.27.0",
     "qs": "^6.10.1",
     "rollup": "^2.53.3",

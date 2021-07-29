@@ -3,6 +3,7 @@
 	import Router from 'svelte-spa-router'
 	
 	import 'chota'
+	import '@mdi/font'
 
 	import { ClerkProvider, UserButton, SignedIn, SignedOut } from '@erickruano/clerk-svelte'
 	import SignInButton from './components/SignInButton.svelte'
@@ -11,7 +12,6 @@
 	import Folder from './routes/Folder.svelte'
 	import NewFolder from './routes/NewFolder.svelte'
 	import NewRepo from './routes/NewRepo.svelte'
-	import Repo from './routes/Repo.svelte'
 	import Landing from './routes/Landing.svelte';
 	import NotFound from './routes/NotFound.svelte';
 
@@ -27,7 +27,6 @@
 		"/folder/new" : NewFolder,
 		"/folder/:folder" : Folder,
 		"/folder/:folder/repo/new" : NewRepo,
-		"/folder/:folder/repo/:repo" : Repo,
 		'*' : NotFound
  	}
 
@@ -36,7 +35,8 @@
 <ClerkProvider frontendApi="clerk.ip0fw.qmsqm.lcl.dev"></ClerkProvider>
 
 <header>
-	<h1 style="font-size:18px;">GITFOLDER</h1>
+	<!-- <h1 style="font-size:18px;">GITFOLDER</h1> -->
+	<img src="assets/logo_w.png" alt="GITFOLDER logo" style="width:148px"/>
 	<nav>
 	
 		<SignedIn>

@@ -4,24 +4,16 @@ config()
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-const findUniqueService = async (id)=>{
+const findUniqueService = async (id, query)=>{
 	return await prisma.folder.findUnique({
+		...query,
 		where : {
 			id : parseInt(id)
-		},
-		include : {
-			repos : true
 		}
 	})
 }
 
-const findManyService = async (params)=>{
-	const query = {
-		include : {
-			repos : true
-		},
-		...params
-	}
+const findManyService = async (query)=>{
 	return await prisma.folder.findMany(query)
 }
 

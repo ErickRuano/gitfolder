@@ -12,31 +12,31 @@ generator client {
 
 model User {
   id        Int      @id @default(autoincrement())
-  clerkId    String  @unique
+  clerkId   String   @unique
   clerkData Json?
-  folders Folder[]
+  folders   Folder[]
 }
 
 model Folder {
-  id            Int      @id @default(autoincrement())
-  name          String
-  description   String?
-  isArchived  Boolean @default(false)
-  owner    User  @relation(fields: [ownerId], references: [id])
-  ownerId  Int
-  repos Repo[] 
-  folderId Int?
-  folder   Folder?     @relation("ParentChildren", fields: [folderId], references: [id])
-  folders  Folder[]    @relation("ParentChildren")
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String?
+  isArchived   Boolean  @default(false)
+  owner        User     @relation(fields: [ownerId], references: [id])
+  ownerId      Int
+  repos        Repo[]
+  folderId     Int?
+  parentFolder Folder?  @relation("ParentChildren", fields: [folderId], references: [id])
+  folders    Folder[] @relation("ParentChildren")
 }
 
 model Repo {
-  id          Int   @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   name        String
   description String?
   private     Boolean
   url         String
   isArchived  Boolean @default(false)
-  folder    Folder  @relation(fields: [folderId], references: [id])
-  folderId  Int
+  folder      Folder  @relation(fields: [folderId], references: [id])
+  folderId    Int
 }

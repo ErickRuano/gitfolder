@@ -10,10 +10,15 @@
 	import Buttons from '../components/Buttons.svelte'
 	import Button from '../components/Button.svelte'
 
+	import { importRepo  } from '../services/folder'
+
+	export let params
+
 	// To mock on unit tests
 	export let env;
 	env = getContext('env')
 
+	let loading = true
 	let repos
 	let code
 	let newRepo = {}
@@ -35,15 +40,17 @@
 
 	const importFromGithub = ()=>{
 		// Starts import auth flow
-		const redirect_uri = 'http://localhost:5000/#/folder/10/repo/new'
+		const redirect_uri = `http://localhost:5000/#/folder/${params.folder}/repo/new`
 		const client_id = '04989aadc45ac92c3c42'
 		const base_url = 'https://github.com/login/oauth/authorize'
 		window.location.href = `${base_url}?client_id=${client_id}&redirect_uri=${redirect_uri}`
 	}
 
 	const moveThisToGithubService = async (code)=>{
+		
+		loading = true;
+		
 		// Calls own backend to get github repos with auth code
-
 		let requestOptions = {
 		method: 'GET',
 		redirect: 'follow'
@@ -52,19 +59,29 @@
 		const response = await fetch(`${env.host}:${env.port}/api/github?code=${code}`, requestOptions)
 
 		repos = await response.json()
-		console.log(repos)
+
+		loading = false;
 	}
 
 	const cancel = ()=>{
 		push('/folder/10')
 	}
 
-	const importRepo = (repo)=>{
+	const importRepository = async (repo)=>{
+		console.log('repo on NeREpo.sevlte', repo)
+		loading = true;
+
 		newRepo.name = repo.name;
 		newRepo.description = repo.description;
 		newRepo.url = repo.html_url
 		newRepo.private = repo.private
-		push('/folder/10')
+		newRepo.folderId = params.folder
+
+		console.log('NEwRepo', newRepo)
+		const created = await importRepo(newRepo)
+		loading = false;
+		push(`/folder/${newRepo.folderId}`)
+		
 	}
 
 	onMount(()=>{
@@ -82,14 +99,14 @@
 
 	{#if repos}<p>Select a repository from the list below</p>{/if}
 	<Container height="calc(100vh - 6rem)" overflowY="auto" margin="1rem 0rem">
-	{#if repos !== undefined}
+	{#if !loading}
 		{#each repos as repo, i}
 			<div class="select-repo">
 				<Card>
 					<span slot="header">{repo.name}</span>
 					<p>{repo.description || 'No description available'}</p>
 					<div slot="footer" class="is-right">
-						<Button primary on:click={()=>{ importRepo(repo) }}>Import</Button>
+						<Button primary on:click={()=>{ importRepository(repo) }}>Import</Button>
 					</div>
 				</Card>
 			</div>
