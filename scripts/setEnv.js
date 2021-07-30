@@ -8,7 +8,7 @@ let variables = {
 
 if(process.env.VERCEL_ENV){
     if(process.env.VERCEL_ENV === 'production'){
-        variables.HOST = 'https://gitfolder.vercel.app'
+        variables.HOST = 'https://gitfolder.satelite.digital'
     }else{
         variables.HOST = process.env.VERCEL_URL
     }
