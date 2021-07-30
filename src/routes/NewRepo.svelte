@@ -1,74 +1,27 @@
 <script>
 	import { onMount, getContext } from 'svelte'
-	import { pop, push } from 'svelte-spa-router'
+	import { push } from 'svelte-spa-router'
 
 	import TitleWithButtons from '../components/TitleWithButtons.svelte'
 	import Placeholder from '../components/Placeholder.svelte'
 	import Container from '../components/Container.svelte'
 	import Card from '../components/Card.svelte'
-	// import Field from '../components/Field.svelte'
 	import Buttons from '../components/Buttons.svelte'
 	import Button from '../components/Button.svelte'
 
-	import { importRepo  } from '../services/folder'
+	import { createRepo  } from '../services/repo'
+	import { getGithubCodeFromHref, importRepos, authenticateGithub  } from '../services/github'
 
 	export let params
 
 	// To mock on unit tests
-	export let env;
-	env = getContext('env')
-
 	let loading = true
 	let repos
 	let code
 	let newRepo = {}
 
-	const getGithubCodeFromHref = ()=>{
-		const str     = window.location.href
-		const matches = str.match(/code=([^&]*)/);
-		
-		if(matches){
-			const match = matches[1]
-			const code = match.split('#')[0]
-			const url = match.split('#')[1]
-			window.history.replaceState({}, document.title, `/#${url}`)
-			return code
-		}else{
-			return undefined
-		}
-	}
-
-	const importFromGithub = ()=>{
-		// Starts import auth flow
-		const redirect_uri = `http://localhost:5000/#/folder/${params.folder}/repo/new`
-		const client_id = '04989aadc45ac92c3c42'
-		const base_url = 'https://github.com/login/oauth/authorize'
-		window.location.href = `${base_url}?client_id=${client_id}&redirect_uri=${redirect_uri}`
-	}
-
-	const moveThisToGithubService = async (code)=>{
-		
-		loading = true;
-		
-		// Calls own backend to get github repos with auth code
-		let requestOptions = {
-		method: 'GET',
-		redirect: 'follow'
-		};
-
-		const response = await fetch(`${env.host}:${env.port}/api/github?code=${code}`, requestOptions)
-
-		repos = await response.json()
-
-		loading = false;
-	}
-
-	const cancel = ()=>{
-		push('/folder/10')
-	}
-
-	const importRepository = async (repo)=>{
-		console.log('repo on NeREpo.sevlte', repo)
+	
+	const addImportedRepository = async (repo)=>{
 		loading = true;
 
 		newRepo.name = repo.name;
@@ -77,17 +30,22 @@
 		newRepo.private = repo.private
 		newRepo.folderId = params.folder
 
-		console.log('NEwRepo', newRepo)
-		const created = await importRepo(newRepo)
+		const created = await createRepo(newRepo)
 		loading = false;
 		push(`/folder/${newRepo.folderId}`)
 		
 	}
 
-	onMount(()=>{
+	const cancel = ()=>{
+		push('/folder/10')
+	}
+
+	onMount(async ()=>{
 		code = getGithubCodeFromHref()
 		if(code){
-			moveThisToGithubService(code)
+			loading = true
+			repos = await importRepos(code)
+			loading = false
 		}
 	})
 
@@ -106,14 +64,14 @@
 					<span slot="header">{repo.name}</span>
 					<p>{repo.description || 'No description available'}</p>
 					<div slot="footer" class="is-right">
-						<Button primary on:click={()=>{ importRepository(repo) }}>Import</Button>
+						<Button primary on:click={()=>{ addImportedRepository(repo) }}>Import</Button>
 					</div>
 				</Card>
 			</div>
 		{/each}
 	{:else}
 		{#if !code}
-		<Placeholder text="You need to import your repositories from github to continue" actionText="Import from github" action={importFromGithub}  src="assets/arranging.svg"></Placeholder>
+		<Placeholder text="You need to import your repositories from github to continue" actionText="Import from github" action={()=>{authenticateGithub(params.folder) }}  src="assets/arranging.svg"></Placeholder>
 		{/if}
 	{/if}
 	</Container>

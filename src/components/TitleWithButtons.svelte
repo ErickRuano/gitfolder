@@ -4,12 +4,14 @@
 	import Title from '../components/Title.svelte'
 
 	export let title = ""
+	export let size = ""
+	export let margin = "0rem"
 </script>
 
 
 
-<div class="title-with-actions">
-    <Title>{title}</Title>
+<div class="title-with-actions" style={`margin:${margin}`}>
+    <Title {size}>{title}</Title>
     <Buttons>
         <slot/>
     </Buttons>

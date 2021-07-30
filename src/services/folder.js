@@ -35,7 +35,7 @@ const fetchFolderContentsService = async (folderId)=>{
             name : true,
             description : true,
             folders : true,
-            parentFolder : true,
+            folder : true,
             repos : true
         }
     })
@@ -46,10 +46,10 @@ const fetchFolderContentsService = async (folderId)=>{
 
 export const fetchFolderContents = fetchFolderContentsService
 
-const importRepoService = async (repo)=>{
-    console.log('repo before send', repo)
-    const response = await axios.post(`http://localhost:5000/api/repo`, repo)
+const createFolderService = async (folder)=>{
+    
+    const response = await axios.post(`http://localhost:5000/api/folder`, folder)
     return response.data
 }
 
-export const importRepo = importRepoService
+export const createFolder = createFolderService

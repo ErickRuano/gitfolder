@@ -1,4 +1,3 @@
-export default {
-    host : 'http://localhost',
-    port : '5000'
+module.exports = {
+ "HOST": "http://localhost:5000"
 }

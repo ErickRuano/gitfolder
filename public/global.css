@@ -1,5 +1,9 @@
 /* Global customization */
 
+:root{
+	--color-folder: #FFA000;
+}
+
 html{
 	font-size:12px!important;
 	overflow:hidden;

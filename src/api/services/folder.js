@@ -4,6 +4,8 @@ config()
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
+import folderPrismaAdapter from './folderPrismaAdapter.js'
+
 const findUniqueService = async (id, query)=>{
 	return await prisma.folder.findUnique({
 		...query,
@@ -18,6 +20,8 @@ const findManyService = async (query)=>{
 }
 
 const createService = async(data)=>{
+	console.log('CREATING FOLDER', data)
+	data = folderPrismaAdapter(data)
 	return await prisma.folder.create({
 		data
 	})

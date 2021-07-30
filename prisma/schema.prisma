@@ -26,7 +26,7 @@ model Folder {
   ownerId      Int
   repos        Repo[]
   folderId     Int?
-  parentFolder Folder?  @relation("ParentChildren", fields: [folderId], references: [id])
+  folder Folder?  @relation("ParentChildren", fields: [folderId], references: [id])
   folders    Folder[] @relation("ParentChildren")
 }
 

@@ -4,14 +4,21 @@ import { findMany, create } from './../services/folder'
 
 
 export default async (req, res)=>{
-	
-	const user = await auth(req, res)
-	const query = queryParser(req.query)
 
+	// Authenticate user
+	const user = await auth(req, res)
+	
+	
+	// Parse query before passing to services
+	const query = queryParser(req.query)
+	
+	
 	if(req.method === 'GET'){
 		const results = await findMany(query)
 		res.send(results)
 	}else if(req.method === 'POST'){
+		// Attach user to request body
+		req.body.owner = user
 		const results = await create(req.body)
 		res.send(results)
 	}else{

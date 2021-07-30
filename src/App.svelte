@@ -1,6 +1,6 @@
 <script>
 	import { setContext } from 'svelte'
-	import Router from 'svelte-spa-router'
+	import Router, { push } from 'svelte-spa-router'
 	
 	import 'chota'
 	import '@mdi/font'
@@ -24,7 +24,8 @@
 
 	const routes = {
 		"/" : Home,
-		"/folder/new" : NewFolder,
+		// "/folder/new" : NewFolder,
+		"/folder/:folder?/new" : NewFolder,
 		"/folder/:folder" : Folder,
 		"/folder/:folder/repo/new" : NewRepo,
 		'*' : NotFound
@@ -36,7 +37,7 @@
 
 <header>
 	<!-- <h1 style="font-size:18px;">GITFOLDER</h1> -->
-	<img src="assets/logo_w.png" alt="GITFOLDER logo" style="width:148px"/>
+	<img src="assets/logo_w.png" alt="GITFOLDER logo" style="width:148px; cursor:pointer;" on:click={()=>{ push('/') }}/>
 	<nav>
 	
 		<SignedIn>

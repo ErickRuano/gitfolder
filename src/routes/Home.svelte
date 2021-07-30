@@ -4,6 +4,7 @@
 	import { push } from 'svelte-spa-router'
 
 	import Container from '../components/Container.svelte'
+	import Items from '../components/Items.svelte'
 	import TitleWithButtons from '../components/TitleWithButtons.svelte'
 	import Button from '../components/Button.svelte'
 	import Placeholder from '../components/Placeholder.svelte'
@@ -44,14 +45,16 @@
 		<Button primary on:click={addFolder}>Add folder</Button>
 	</TitleWithButtons>
 	
-	<Container overflowY="auto">
+	<Container overflowY="auto" padding="0rem">
 		{#if loading}
 			Loading...
 		{:else}	
 			{#if !empty}
-				{#each rootFolders as folder, i}
-					<Folder {folder} />
-				{/each}
+				<Items>
+					{#each rootFolders as folder, i}
+						<Folder {folder}  />
+					{/each}
+				</Items>
 			{:else}
 				<Placeholder text="You haven't added any folders yet"  ></Placeholder>
 			{/if}
@@ -59,5 +62,3 @@
 	</Container>
 
 </Container>
-
-

@@ -4,20 +4,7 @@ config()
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-const folderPrismaAdapter = (data)=>{
-
-	if(data.folderId){
-		data.folder = {
-			connect : {
-				id : parseInt(data.folderId)
-			}
-		}
-		delete data.folderId
-	}
-
-	return data
-	
-}
+import folderPrismaAdapter from './folderPrismaAdapter'
 
 const findUniqueService = async (id)=>{
 	return await prisma.repo.findUnique({

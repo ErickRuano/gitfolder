@@ -1,11 +1,14 @@
-<h1><slot></slot></h1>
+<script>
+	export let size = "3rem"
+</script>
+
+<h1 style={`font-size:${size}`}><slot></slot></h1>
 
 <style>
 
 	
 	h1 {
 		color: #4a4a4a;
-		font-size: 3rem;
 		text-transform:uppercase;
 		font-weight: bold;
 		margin:0px;
