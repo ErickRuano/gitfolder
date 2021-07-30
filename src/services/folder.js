@@ -1,3 +1,5 @@
+import env from './../.env'
+
 import axios from 'axios'
 import qs from 'qs'
 
@@ -47,9 +49,24 @@ const fetchFolderContentsService = async (folderId)=>{
 export const fetchFolderContents = fetchFolderContentsService
 
 const createFolderService = async (folder)=>{
-    
     const response = await axios.post(`http://localhost:5000/api/folder`, folder)
     return response.data
 }
 
 export const createFolder = createFolderService
+
+const updateFolderService = async (values) =>{
+    const folderId = values.id
+    delete values.id
+    const response = await axios.put(`${env.HOST}/api/folder/${folderId}`, values)
+    return response.data
+}
+
+export const updateFolder = updateFolderService
+
+const removeFolderService = async (folderId) =>{
+    const response = await axios.delete(`${env.HOST}/api/folder/${folderId}`)
+    return response.data
+}
+
+export const removeFolder = removeFolderService

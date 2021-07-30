@@ -37,12 +37,16 @@ const updateService = async(id, data)=>{
 }
 
 const deleteService = async(id, params)=>{
-	return await prisma.folder.delete({
-		...params,
-		where : {
-			id : parseInt(id)
-		}
-	})
+	const query = `delete from public."Folder" where "folderId" = ${id} or id = ${id};`
+
+	return await prisma.$queryRaw(query)
+
+	// return await prisma.folder.delete({
+	// 	...params,
+	// 	where : {
+	// 		id : parseInt(id)
+	// 	}
+	// })
 }
 
 

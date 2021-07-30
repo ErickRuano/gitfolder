@@ -20,8 +20,7 @@
 </script>
 
 {#if folder}
-    <div style={`padding:${gap};width:${width};box-sizing:border-box`}>
-
+    <div class="folderContainer" style={`padding:${gap};--width:${width};box-sizing:border-box`}>
         <div class="card" style={`width:100%`}>
             <div class="folder-title" on:click={openFolder}>
                 <div width="4rem"><Icon path={mdiFolder} color="var(--color-folder)" size="2rem" /></div>
@@ -49,5 +48,21 @@
         overflow:hidden;
         white-space: nowrap;
         width: calc(100% - 2rem);
+    }
+
+    .folderContainer{
+        width:100%!important
+    }
+
+    @media only screen and (min-width: 720px) {
+        .folderContainer {
+            width:50%!important;
+        }
+    }
+
+    @media only screen and (min-width: 900px) {
+        .folderContainer {
+            width:var(--width)!important;
+        }
     }
 </style>

@@ -14,9 +14,11 @@
     "@erickruano/clerk-svelte": "0.0.5",
     "@mdi/js": "^5.9.55",
     "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-replace": "^3.0.0",
     "axios": "^0.21.1",
+    "bytemd": "^1.10.13",
     "chota": "^0.8.0",
     "cookies": "^0.8.0",
     "dotenv": "^10.0.0",
@@ -30,6 +32,7 @@
     "rollup-plugin-terser": "^7.0.0",
     "svelte": "^3.0.0",
     "svelte-chota": "^1.8.4",
+    "svelte-markdown": "^0.1.10",
     "svelte-spa-router": "^3.2.0"
   },
   "dependencies": {

@@ -52,9 +52,9 @@
 
 
 <Container>
-	<Title>Add new folder {folder}</Title>
+	<Title>Add new folder</Title>
 	<Field label="Name" bind:value={newFolder.name}></Field>
-	<Field label="Description" bind:value={newFolder.description}></Field>
+	<Field textarea label="Description" bind:value={newFolder.description}></Field>
 	<Buttons>	
 		<Button  on:click={cancel}>Cancel</Button>
 		<Button primary on:click={addFolder}>Add folder</Button>
