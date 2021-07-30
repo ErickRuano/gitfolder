@@ -29,7 +29,6 @@ const findOrCreateUser = async (user)=>{
 
 const authMiddleware = async(req, res)=>{
 
-    setClerkApiKey('test_ot57kAZJVQOoGGvz4Ig49NHK4fwFQMmEnD')
     
 	// Get clientToken from __session cookie
 	const cookies = new Cookies(req)
@@ -55,7 +54,7 @@ const authMiddleware = async(req, res)=>{
 	}
     
 	// Get user from Clerk
-	user = await users.getUser(session.userId, 'test_ot57kAZJVQOoGGvz4Ig49NHK4fwFQMmEnD')
+	user = await users.getUser(session.userId)
     
 	// Check if user in db, else store
 	const dbUser = await findOrCreateUser(user)

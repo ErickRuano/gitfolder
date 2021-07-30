@@ -13,6 +13,7 @@ generator client {
 model User {
   id        Int      @id @default(autoincrement())
   clerkId   String   @unique
+  username  String   @unique
   clerkData Json?
   folders   Folder[]
 }
