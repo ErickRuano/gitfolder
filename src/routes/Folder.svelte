@@ -8,6 +8,7 @@
 	import Items from '../components/Items.svelte'
 	import TitleWithButtons from '../components/TitleWithButtons.svelte'
 	import Markdown from '../components/Markdown.svelte'
+	import Buttons from '../components/Buttons.svelte'
 	import Button from '../components/Button.svelte'
 	import Placeholder from '../components/Placeholder.svelte'
 	import Folder  from '../components/Folder.svelte'
@@ -82,37 +83,39 @@
 	</TitleWithButtons>
 	<Markdown bind:value={contents.description} handleUpdate={updateFolderHandler}></Markdown>
 	{/if}
+
 		{#if loading}
 			Loading...
 		{:else}
-			<TitleWithButtons title="Folders" size="2rem" margin="1rem 0rem 0rem 0rem"> 	
-				<Button primary  on:click={()=>{ push(`/folder/${folder ? folder+'/' : ''}new`) }}>Add Folder</Button>
-			</TitleWithButtons>
-			{#if !empty}
-			<Items>
-				{#each contents.folders as folder, i}
-					<Folder {folder}></Folder>
-				{/each}
-			</Items>
-				{:else}
-					<Placeholder text="You haven't added any contents on this folder yet" ></Placeholder>
-				{/if}
-
-			<TitleWithButtons title="Repositories" size="2rem">	
-				<Button primary on:click={()=>{ push(`${$location}/repo/new`) }}>Add Repository</Button>
-			</TitleWithButtons>
 			{#if contents}
 				{#if !empty}
-				<Items>
-					{#each contents.repos as repo, i}
-						<Repo {repo} removeHandler={()=>{ removeRepoHandler(repo.id, i) }}></Repo>
-					{/each}
-				</Items>
+					<TitleWithButtons title="Folders" size="2rem" margin="1rem 0rem 0rem 0rem"> 	
+						<Button primary  on:click={()=>{ push(`/folder/${folder ? folder+'/' : ''}new`) }}>Add Folder</Button>
+					</TitleWithButtons>
+					<Items>
+						{#each contents.folders as folder, i}
+							<Folder {folder}></Folder>
+						{/each}
+					</Items>
+
+					<TitleWithButtons title="Repositories" size="2rem">	
+						<Button primary on:click={()=>{ push(`${$location}/repo/new`) }}>Add Repository</Button>
+					</TitleWithButtons>
+					<Items>
+						{#each contents.repos as repo, i}
+							<Repo {repo} removeHandler={()=>{ removeRepoHandler(repo.id, i) }}></Repo>
+						{/each}
+					</Items>
 				{:else}
-					<Placeholder text="You haven't added any contents on this folder yet" ></Placeholder>
+				<Buttons>
+
+					<Button primary  on:click={()=>{ push(`/folder/${folder ? folder+'/' : ''}new`) }}>Add Folder</Button>
+					<Button primary on:click={()=>{ push(`${$location}/repo/new`) }}>Add Repository</Button>
+				</Buttons>
+				<Placeholder text="You haven't added any contents on this folder yet" ></Placeholder>
 				{/if}
 			{/if}
-		
+			
 		{/if}
 </div>
 

@@ -1,9 +1,19 @@
 const fs = require('fs')
 require('dotenv').config()
 
-const variables = {
-    HOST :  `https://${process.env.VERCEL_URL}` || process.env.APPLICATION_HOST || 'http://localhost:5000',
+let variables = {
+    HOST :  '',
     CLERK_FRONTEND_API : process.env.CLERK_FRONTEND_API || ''
+}
+
+if(process.env.VERCEL_ENV){
+    if(process.env.VERCEL_ENV === 'production'){
+        variables.HOST = 'https://gitfolder.vercel.app'
+    }else{
+        variables.HOST = process.env.VERCEL_URL
+    }
+}else{
+    variables.HOST = 'http://localhost:5000'
 }
 
 console.log(variables)
