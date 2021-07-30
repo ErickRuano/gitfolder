@@ -33,7 +33,7 @@
 
 
 </script>
-<ClerkProvider frontendApi="clerk.ip0fw.qmsqm.lcl.dev"></ClerkProvider>
+<ClerkProvider frontendApi={env.CLERK_FRONTEND_API}></ClerkProvider>
 
 <header>
 	<!-- <h1 style="font-size:18px;">GITFOLDER</h1> -->

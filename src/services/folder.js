@@ -23,7 +23,7 @@ const fetchRootFoldersService = async (userId)=>{
 		}
 	})
 
-    const response = await axios.get(`http://localhost:5000/api/folder?${query}`)
+    const response = await axios.get(`${env.HOST}/api/folder?${query}`)
     return response.data
 }
 
@@ -42,14 +42,14 @@ const fetchFolderContentsService = async (folderId)=>{
         }
     })
 
-    const response = await axios.get(`http://localhost:5000/api/folder/${folderId}?${query}`)
+    const response = await axios.get(`${env.HOST}/api/folder/${folderId}?${query}`)
     return response.data
 }
 
 export const fetchFolderContents = fetchFolderContentsService
 
 const createFolderService = async (folder)=>{
-    const response = await axios.post(`http://localhost:5000/api/folder`, folder)
+    const response = await axios.post(`${env.HOST}/api/folder`, folder)
     return response.data
 }
 
