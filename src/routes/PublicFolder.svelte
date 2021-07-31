@@ -89,6 +89,7 @@
 		{:else}
 			{#if contents}
 				{#if !empty}
+					{#if contents.folders.length}
 					<TitleWithButtons title="Folders" size="2rem" margin="1rem 0rem 0rem 0rem"> 	
 					</TitleWithButtons>
 					<Items>
@@ -96,7 +97,8 @@
 							<Folder isPublic={params.username} {folder}></Folder>
 						{/each}
 					</Items>
-
+					{/if}
+					{#if contents.repos.length}
 					<TitleWithButtons title="Repositories" size="2rem">	
 					</TitleWithButtons>
 					<Items>
@@ -104,6 +106,7 @@
 							<Repo {repo} removeHandler={()=>{ removeRepoHandler(repo.id, i) }}></Repo>
 						{/each}
 					</Items>
+					{/if}
 				{:else}
 				<Placeholder text="User hasn't added any contents on this folder yet" ></Placeholder>
 				{/if}
