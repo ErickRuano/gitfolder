@@ -75,7 +75,7 @@
 		{''}
 	{:else}
 	{#if contents.folder}
-		<p on:click={()=>{ push(`/folder/${contents.folder.id}`) }} class="parentFolder">{`.../${contents.folder.name.trim()}/`}</p>
+		<p on:click={()=>{ push(`/${params.username}/folder/${contents.folder.id}`) }} class="parentFolder">{`.../${contents.folder.name.trim()}/`}</p>
 	{:else}
 		<p on:click={()=>{ push(`/${params.username}`) }} class="parentFolder">{params.username}/</p>
 	{/if}
