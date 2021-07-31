@@ -107,7 +107,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@_erickruano](https://twitter.com/_erickruano_) - erick@satelite.digital
+Erick Ruano - [@_erickruano](https://twitter.com/_erickruano_) - erick@satelite.digital
 
 
 
