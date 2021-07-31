@@ -1,105 +1,131 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
-
----
-
-# svelte app
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
 
-## Get started
-
-Install the dependencies...
-
-```bash
-cd svelte-app
-npm install
-```
-
-...then start [Rollup](https://rollupjs.org):
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 
 
-## Single-page app mode
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/erickruano/gitfolder">
+    <img src="public/assets/logo.png" alt="Logo" height="48px" >
+  </a>
 
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
+  <h3 align="center">Organize, document, share.</h3>
 
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+  <p align="center">
+    <br />
+    <a href="https://github.com/erickruano/gitfolder"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://gitfolder.satelite.digital">View Demo</a>
+    ·
+    <a href="https://github.com/erickruano/gitfolder/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/erickruano/gitfolder/issues">Request Feature</a>
+  </p>
+</p>
 
-```js
-"start": "sirv public --single"
-```
 
-## Using TypeScript
 
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
-```bash
-node scripts/setupTypeScript.js
-```
 
-Or remove the script via:
 
-```bash
-rm scripts/setupTypeScript.js
-```
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-## Deploying to the web
+![folder_preview.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1627704685199/T_kdaupvS.png)
 
-### With [Vercel](https://vercel.com)
+Since I've been using [Github](https://github.com) I've always wanted to organize my repositories in a folder tree, which is not possible on the platform itself.  I recently learned about the #ClerkDev #ClerkHackathon on #Hashnode and thought it would be a great opportunity to build a quick solution.
 
-Install `vercel` if you haven't already:
+The idea is to have a web application for you to create and manage folders, in which you can import any of your [Github](https://github.com) repositories.  Once you are happy with how you organized your projects, you should be able to share a public, unique URL for anyone to check your work.
 
-```bash
-npm install -g vercel
-```
+- Create any folder structure
+- Use markdown to describe and customize each folder
+- Import your public repositories directly from Github
+- Share a public URL
 
-Then, from within your project folder:
+### Built With
 
-```bash
-cd public
-vercel deploy --name my-project
-```
 
-### With [surge](https://surge.sh/)
+- Svelte - As frontend application framework
+- Svelte-Chota - For lightweight UI components
+- Node.js - Serverless functions runtime
+- Vercel - Application hosting and serverless functions platform
+- Prisma - ORM
+- PostgreSQL - Database
+- Clerk - User Management as a Service
 
-Install `surge` if you haven't already:
 
-```bash
-npm install -g surge
-```
+<!-- ROADMAP -->
+## Roadmap
 
-Then, from within your project folder:
+See the [open issues](https://github.com/erickruano/gitfolder/issues) for a list of proposed features (and known issues).
 
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Your Name - [@_erickruano](https://twitter.com/_erickruano_) - erick@satelite.digital
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/erickruano/gitfolder.svg?style=for-the-badge
+[contributors-url]: https://github.com/erickruano/gitfolder/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/erickruano/gitfolder.svg?style=for-the-badge
+[forks-url]: https://github.com/erickruano/gitfolder/network/members
+[stars-shield]: https://img.shields.io/github/stars/erickruano/gitfolder.svg?style=for-the-badge
+[stars-url]: https://github.com/erickruano/gitfolder/stargazers
+[issues-shield]: https://img.shields.io/github/issues/erickruano/gitfolder.svg?style=for-the-badge
+[issues-url]: https://github.com/erickruano/gitfolder/issues
+[license-shield]: https://img.shields.io/github/license/erickruano/gitfolder.svg?style=for-the-badge
+[license-url]: https://github.com/erickruano/gitfolder/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png
+
+
+
