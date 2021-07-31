@@ -37,7 +37,7 @@ const updateService = async(id, data)=>{
 }
 
 const deleteService = async(id, params)=>{
-	const query = `delete from public."Folder" where "folderId" = "${id}" or id = "${id}";`
+	const query = `delete from public."Folder" where "folderId" = '${id}' or id = '${id}';`
 
 	return await prisma.$queryRaw(query)
 }
