@@ -93,7 +93,7 @@
 					</TitleWithButtons>
 					<Items>
 						{#each contents.folders as folder, i}
-							<Folder {folder}></Folder>
+							<Folder isPublic={params.username} {folder}></Folder>
 						{/each}
 					</Items>
 
