@@ -79,7 +79,7 @@
 	{:else}
 		<p on:click={()=>{ push(`/${params.username}`) }} class="parentFolder">{params.username}/</p>
 	{/if}
-	<TitleWithButtons bind:title={contents.name}  editable updateHandler={updateFolderHandler} margin="0rem 0rem 1rem 0rem">	
+	<TitleWithButtons title={contents.name} margin="0rem 0rem 1rem 0rem">	
 	</TitleWithButtons>
 	<Markdown editable={false} bind:value={contents.description} ></Markdown>
 	{/if}
