@@ -1,18 +1,16 @@
 <script>
     import { push  } from 'svelte-spa-router'
-    import Card from './Card.svelte'
-    import Button from './Button.svelte'
     import Icon from 'mdi-svelte';
     import { mdiFolder } from '@mdi/js';
-
-    export let params
+    
+    export let isPublic = false
     export let folder
 
     export let width = "25%"
     export let gap = "1rem"
 
     const openFolder = ()=>{
-        push(`/folder/${folder.id}`)
+        push(`${isPublic ? `/${isPublic}` : '' }/folder/${folder.id}`)
     }
 
     const removeFolder = ()=>{}

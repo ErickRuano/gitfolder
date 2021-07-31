@@ -9,7 +9,9 @@
 	import SignInButton from './components/SignInButton.svelte'
 
 	import Home from './routes/Home.svelte'
+	import PublicHome from './routes/PublicHome.svelte'
 	import Folder from './routes/Folder.svelte'
+	import PublicFolder from './routes/PublicFolder.svelte'
 	import NewFolder from './routes/NewFolder.svelte'
 	import NewRepo from './routes/NewRepo.svelte'
 	import Landing from './routes/Landing.svelte';
@@ -24,16 +26,29 @@
 
 	const routes = {
 		"/" : Home,
-		// "/folder/new" : NewFolder,
 		"/folder/:folder?/new" : NewFolder,
 		"/folder/:folder" : Folder,
 		"/folder/:folder/repo/new" : NewRepo,
+		"/:username" : PublicHome,
+		"/:username/folder/:folder" : PublicFolder,
 		'*' : NotFound
  	}
 
+	 const publicRoutes = {
+		"/" : Landing,
+		"/:username" : PublicHome,
+		"/:username/folder/:folder" : PublicFolder,
+		'*' : NotFound
+	 }
+
 
 </script>
-<ClerkProvider frontendApi={env.CLERK_FRONTEND_API}></ClerkProvider>
+
+<svelte:head>
+	<title>GITFOLDER</title>
+</svelte:head>
+
+<ClerkProvider frontendApi={env.CLERK_FRONTEND_API }></ClerkProvider>
 
 <header>
 	<!-- <h1 style="font-size:18px;">GITFOLDER</h1> -->
@@ -57,9 +72,7 @@
 		<div class="slot"><Router {routes}></Router></div>
 	</SignedIn>
 	<SignedOut>
-		<span slot="signedOut">
-			<Landing bind:login={login}></Landing>
-		</span>
+		<div class="slot" slot="signedOut"><Router routes={publicRoutes}></Router></div>
 	</SignedOut>
 </main>
 

@@ -2,7 +2,8 @@
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "clerkId" TEXT NOT NULL,
-    "clerkhData" JSONB,
+    "username" TEXT NOT NULL,
+    "clerkData" JSONB,
 
     PRIMARY KEY ("id")
 );
@@ -24,11 +25,19 @@ CREATE TABLE "Repo" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
+    "private" BOOLEAN NOT NULL,
+    "url" TEXT NOT NULL,
     "isArchived" BOOLEAN NOT NULL DEFAULT false,
     "folderId" INTEGER NOT NULL,
 
     PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User.clerkId_unique" ON "User"("clerkId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User.username_unique" ON "User"("username");
 
 -- AddForeignKey
 ALTER TABLE "Folder" ADD FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -1,13 +1,7 @@
 <script>
-
-
 	import { Clerk } from '@erickruano/clerk-svelte'
-	import { onMount, getContext } from 'svelte'
+	import { onMount } from 'svelte'
 	import { push } from 'svelte-spa-router'
-
-	import Icon from 'mdi-svelte';
-    import { mdiOpenInNew } from '@mdi/js';
-    
 
 	import Container from '../components/Container.svelte'
 	import Items from '../components/Items.svelte'
@@ -18,11 +12,8 @@
 	import Folder from '../components/Folder.svelte'
 
 	import { fetchRootFolders } from './../services/folder'
-	import { fetchProfileURL } from './../services/profile'
 
-	// Environment
-	const env = getContext('env')
-
+	
 	// State
 	export let params
 	let rootFolders
@@ -30,15 +21,10 @@
 	let empty = true
 
 	const addFolder = ()=>{ push('/folder/new') }
-	
-	const openPublic = async ()=>{
-		const url = await fetchProfileURL()
-		window.open(`${env.HOST}/#${url}`, '_blank')
-	}
 
 	const fetchFolders = async ()=>{
 		loading = true
-		rootFolders = await fetchRootFolders($Clerk.user.id)
+		rootFolders = await fetchRootFolders(params.username, true)
 		if(Array.isArray(rootFolders) && rootFolders.length !== 0){
 			empty = false
 		}
@@ -57,10 +43,9 @@
 
 <Container>
 
-	<TitleWithButtons title="Organize your repositories into folders">	
+	<!-- <TitleWithButtons title="Organize your repositories into folders">	
 		<Button primary on:click={addFolder}>Add folder</Button>
-		<Button primary on:click={openPublic}>Public <Icon path={mdiOpenInNew} color="white" size="2rem" /></Button>
-	</TitleWithButtons>
+	</TitleWithButtons> -->
 	
 	<Container overflowY="auto" padding="0rem">
 		{#if loading}
@@ -69,7 +54,7 @@
 			{#if !empty}
 				<Items>
 					{#each rootFolders as folder, i}
-						<Folder {folder}  />
+						<Folder {folder} isPublic={params.username} />
 					{/each}
 				</Items>
 			{:else}

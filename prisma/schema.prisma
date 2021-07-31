@@ -11,7 +11,7 @@ generator client {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String  @id @default(uuid())
   clerkId   String   @unique
   username  String   @unique
   clerkData Json?
@@ -19,7 +19,7 @@ model User {
 }
 
 model Folder {
-  id           Int      @id @default(autoincrement())
+  id        String  @id @default(uuid())
   name         String
   description  String?
   isArchived   Boolean  @default(false)
@@ -32,7 +32,7 @@ model Folder {
 }
 
 model Repo {
-  id          Int     @id @default(autoincrement())
+  id        String  @id @default(uuid())
   name        String
   description String?
   private     Boolean

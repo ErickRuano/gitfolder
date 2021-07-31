@@ -17,8 +17,11 @@ const findOrCreateUser = async (user)=>{
 	})
 
 	if(!found){
+		let username = user.username || user.firstName.replace(' ', '-').toLowerCase() + user.lastName.replace(' ', '-').toLowerCase() + Math.floor(1000 + Math.random() * 9000)
+		username = username.toLowerCase()
 		const newUser = {
 			clerkId : user.id,
+			username,
 			clerkData : user
 		}
 		return await prisma.user.create({ data : newUser })

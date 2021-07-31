@@ -3,14 +3,14 @@ import env from './../.env'
 import axios from 'axios'
 import qs from 'qs'
 
-const fetchRootFoldersService = async (userId)=>{
+const fetchRootFoldersService = async (userId, isPublic = false)=>{
     const query = qs.stringify({
 		where : {
             AND : [
                 {
                     owner : {
                         is : {
-                            clerkId : userId
+                            [isPublic ? 'username' : 'clerkId'] : userId
                         }
                     }
                 },
@@ -23,14 +23,14 @@ const fetchRootFoldersService = async (userId)=>{
 		}
 	})
 
-    const response = await axios.get(`${env.HOST}/api/folder?${query}`)
+    const response = await axios.get(`${env.HOST}/api/${isPublic ? 'public/' : ''}folder?${query}`)
     return response.data
 }
 
 export const fetchRootFolders = fetchRootFoldersService
 
 
-const fetchFolderContentsService = async (folderId)=>{
+const fetchFolderContentsService = async (folderId,  isPublic = false)=>{
     const query = qs.stringify({
         select : {
             id : true,
@@ -42,7 +42,7 @@ const fetchFolderContentsService = async (folderId)=>{
         }
     })
 
-    const response = await axios.get(`${env.HOST}/api/folder/${folderId}?${query}`)
+    const response = await axios.get(`${env.HOST}/api/${isPublic ? 'public/' : ''}folder/${folderId}?${query}`)
     return response.data
 }
 

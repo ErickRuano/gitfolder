@@ -12,6 +12,7 @@
 		text-transform:uppercase;
 		font-weight: bold;
 		margin:0px;
+		width:100%;
 	}
 
 

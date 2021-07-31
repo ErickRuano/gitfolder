@@ -16,8 +16,6 @@ if(process.env.VERCEL_ENV){
     variables.HOST = 'http://localhost:5000'
 }
 
-console.log(variables)
-
 const code = `module.exports = ${JSON.stringify(variables, null, 1)}`
 
 
