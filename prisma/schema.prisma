@@ -14,6 +14,7 @@ model User {
   id        String  @id @default(uuid())
   clerkId   String   @unique
   username  String   @unique
+  description String?
   clerkData Json?
   folders   Folder[]
 }
@@ -24,9 +25,9 @@ model Folder {
   description  String?
   isArchived   Boolean  @default(false)
   owner        User     @relation(fields: [ownerId], references: [id])
-  ownerId      Int
+  ownerId      String
   repos        Repo[]
-  folderId     Int?
+  folderId     String?
   folder Folder?  @relation("ParentChildren", fields: [folderId], references: [id])
   folders    Folder[] @relation("ParentChildren")
 }
@@ -39,5 +40,5 @@ model Repo {
   url         String
   isArchived  Boolean @default(false)
   folder      Folder  @relation(fields: [folderId], references: [id])
-  folderId    Int
+  folderId    String
 }

@@ -5,10 +5,12 @@
     export let actionText = undefined
     export let text = "You haven't added any data yet"
     export let src = "assets/organizing.svg"
+
+    export let height = "100%"
 </script>
 
-<div class="placeholder"> 
-    <img {src} />
+<div class="placeholder" style={`height:${height}`}> 
+    <img {src} alt="placeholder" />
     <p >{text}</p>
     {#if action && actionText}
     <Button primary on:click={action}>{actionText}</Button>

@@ -4,7 +4,7 @@ export default (data)=>{
 	if(data.folderId){
 		data.folder = {
 			connect : {
-				id : parseInt(data.folderId)
+				id : data.folderId
 			}
 		}
 		delete data.folderId
@@ -13,7 +13,7 @@ export default (data)=>{
 	if(data.owner){
 		data.owner = {
 			connect : {
-				id : parseInt(data.owner.id)
+				id : data.owner.id
 			}
 		}
 	}

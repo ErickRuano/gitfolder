@@ -10,7 +10,7 @@ const findUniqueService = async (id, query)=>{
 	return await prisma.folder.findUnique({
 		...query,
 		where : {
-			id : parseInt(id)
+			id : id
 		}
 	})
 }
@@ -30,7 +30,7 @@ const createService = async(data)=>{
 const updateService = async(id, data)=>{
 	return await prisma.folder.update({
 		where : {
-			id : parseInt(id)
+			id : id
 		},
 		data
 	})
@@ -40,13 +40,6 @@ const deleteService = async(id, params)=>{
 	const query = `delete from public."Folder" where "folderId" = ${id} or id = ${id};`
 
 	return await prisma.$queryRaw(query)
-
-	// return await prisma.folder.delete({
-	// 	...params,
-	// 	where : {
-	// 		id : parseInt(id)
-	// 	}
-	// })
 }
 
 

@@ -61,7 +61,7 @@
 	// Lifecycle
 	const unsubscribe = location.subscribe(async (route)=>{
 		folder = route.replace('/folder/', '')
-		fetchContents(parseInt(folder))
+		fetchContents(folder)
 	})
 
 	onDestroy(unsubscribe)
@@ -71,7 +71,7 @@
 
 <div style="overflow-y:auto;padding:1rem;height:100%;">
 	{#if loading}
-		
+		{''}
 	{:else}
 	{#if contents.folder}
 		<p on:click={()=>{ push(`/folder/${contents.folder.id}`) }} class="parentFolder">{`.../${contents.folder.name.trim()}/`}</p>
@@ -107,12 +107,11 @@
 						{/each}
 					</Items>
 				{:else}
-				<Buttons>
-
+				<Placeholder text="You haven't added any contents on this folder yet" height="auto"></Placeholder>
+				<Buttons justify="center">
 					<Button primary  on:click={()=>{ push(`/folder/${folder ? folder+'/' : ''}new`) }}>Add Folder</Button>
 					<Button primary on:click={()=>{ push(`${$location}/repo/new`) }}>Add Repository</Button>
 				</Buttons>
-				<Placeholder text="You haven't added any contents on this folder yet" ></Placeholder>
 				{/if}
 			{/if}
 			

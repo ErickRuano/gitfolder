@@ -9,7 +9,7 @@ import folderPrismaAdapter from './folderPrismaAdapter'
 const findUniqueService = async (id)=>{
 	return await prisma.repo.findUnique({
 		where : {
-			id : parseInt(id)
+			id : id
 		}
 	})
 }
@@ -34,7 +34,7 @@ const updateService = async(id, data)=>{
 	
 	return await prisma.repo.update({
 		where : {
-			id : parseInt(id)
+			id : id
 		},
 		data
 	})
@@ -44,7 +44,7 @@ const deleteService = async(id, params)=>{
 	return await prisma.repo.delete({
 		...params,
 		where : {
-			id : parseInt(id)
+			id : id
 		}
 	})
 }

@@ -1,8 +1,9 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "clerkId" TEXT NOT NULL,
     "username" TEXT NOT NULL,
+    "description" TEXT,
     "clerkData" JSONB,
 
     PRIMARY KEY ("id")
@@ -10,25 +11,25 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Folder" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
     "isArchived" BOOLEAN NOT NULL DEFAULT false,
-    "ownerId" INTEGER NOT NULL,
-    "folderId" INTEGER,
+    "ownerId" TEXT NOT NULL,
+    "folderId" TEXT,
 
     PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Repo" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
     "private" BOOLEAN NOT NULL,
     "url" TEXT NOT NULL,
     "isArchived" BOOLEAN NOT NULL DEFAULT false,
-    "folderId" INTEGER NOT NULL,
+    "folderId" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
 );

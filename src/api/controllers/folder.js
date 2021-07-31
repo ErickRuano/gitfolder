@@ -9,7 +9,7 @@ export default async (req, res)=>{
 	const user = await auth(req, res)
 	
 	// Retrieve resource id
-	const folderId = parseInt(req.query.id);
+	const folderId = req.query.id;
 
 	// Since Vercel attaches route parameters as query parameters I'm removing id to avoid issues with services
 	delete req.query.id
