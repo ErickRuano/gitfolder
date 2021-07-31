@@ -62,7 +62,7 @@
 	// Lifecycle
 	const unsubscribe = location.subscribe(async (route)=>{
 		folder = route.replace(`/${params.username}/folder/`, '')
-		fetchContents(parseInt(folder))
+		fetchContents(folder)
 	})
 
 	onDestroy(unsubscribe)
@@ -72,7 +72,7 @@
 
 <div style="overflow-y:auto;padding:1rem;height:100%;">
 	{#if loading}
-		
+		{''}
 	{:else}
 	{#if contents.folder}
 		<p on:click={()=>{ push(`/folder/${contents.folder.id}`) }} class="parentFolder">{`.../${contents.folder.name.trim()}/`}</p>

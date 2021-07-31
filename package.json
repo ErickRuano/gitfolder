@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "node scripts/bundleAPI && node scripts/setEnv",
+    "postinstall": "node scripts/bundleAPI && node scripts/setEnv && npx prisma generate",
     "build": "rollup -c",
     "dev": "node scripts/bundleAPI && node scripts/setEnv && rollup -c -w",
     "start": "sirv public --no-clear",
