@@ -40,9 +40,11 @@
 
 	// Lifecycle
 	const unsubscribe = location.subscribe(async (route)=>{
-		let folderId = route.replace('/folder/', '')
-		folderId = folderId.replace('/new', '')
-		folder = folderId
+		if(params.folder){
+			let folderId = route.replace('/folder/', '')
+			folderId = folderId.replace('/new', '')
+			folder = folderId
+		}
 	})
 
 	onDestroy(unsubscribe)

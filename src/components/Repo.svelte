@@ -13,7 +13,7 @@ const openRepo = ()=>{ window.location.href = repo.url  }
 <div class="repo-container" style={`--width:${width};padding:${gap}`}>
     <Card>
         <span slot="header" on:click={openRepo}>{repo.name}</span>
-        <p>{repo.description}</p>
+        <p>{repo.description || "No description available"}</p>
         <div slot="footer" class="is-right">
             <Button clear on:click={removeHandler}>Remove</Button>
             <Button primary on:click={openRepo}>Open</Button>
