@@ -42,7 +42,7 @@
 	const unsubscribe = location.subscribe(async (route)=>{
 		let folderId = route.replace('/folder/', '')
 		folderId = folderId.replace('/new', '')
-		folder = parseInt(folderId)
+		folder = folderId
 	})
 
 	onDestroy(unsubscribe)

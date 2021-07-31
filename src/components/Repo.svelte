@@ -25,6 +25,12 @@ const openRepo = ()=>{ window.location.href = repo.url  }
     span[slot="header"]{
         cursor:pointer;
     }
+
+    p{
+        text-overflow: ellipsis;
+         overflow:hidden;
+        white-space: nowrap;
+    }
     .repo-container{
         box-sizing: border-box;
         width:100%!important
