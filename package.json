@@ -36,7 +36,7 @@
     "svelte-spa-router": "^3.2.0"
   },
   "dependencies": {
-    "@prisma/client": "^2.27.0",
+    "@prisma/client": "^2.30.3",
     "sirv-cli": "^1.0.0"
   }
 }
