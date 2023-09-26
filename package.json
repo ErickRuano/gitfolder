@@ -37,6 +37,6 @@
   },
   "dependencies": {
     "@prisma/client": "^2.27.0",
-    "sirv-cli": "^1.0.0"
+    "sirv-cli": "^1.0.14"
   }
 }
